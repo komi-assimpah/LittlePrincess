@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class PhotoBoothTrigger : MonoBehaviour
 {
     public GameObject photoTakenText;
+    public MonoBehaviour playerMovementScript; // à remplir dans l'inspecteur avec ton script de déplacement
     public GameObject postcardFrame;
     public GameObject uiMessage;
     public GameObject flashLight;
@@ -28,7 +29,7 @@ public class PhotoBoothTrigger : MonoBehaviour
     void Update()
     {
         // Appui sur ESPACE : entrée dans le photobooth ou photo
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.C))
         {
             if (isPlayerNearby && !photoStarted)
             {
@@ -60,6 +61,8 @@ public class PhotoBoothTrigger : MonoBehaviour
                 // rotation 180% du player
                 player.transform.rotation = Quaternion.Euler(0, 180, 0);
                 Debug.Log("🚪 Sortie du photobooth");
+                playerMovementScript.enabled = true;
+
             }
         }
 
@@ -99,6 +102,7 @@ public class PhotoBoothTrigger : MonoBehaviour
 
     void StartPhotoSession()
     {
+        playerMovementScript.enabled = false;
         MovePlayerToPoseSpot();
         playerAnimator.SetInteger("poseIndex", poseNumber);
 
