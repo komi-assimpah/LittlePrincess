@@ -66,6 +66,6 @@ public class GameManager : MonoBehaviour
 
     public void ContinueGame()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(3);
     }
 }
